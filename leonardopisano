@@ -1,0 +1,36 @@
+Задуманное число нужно передавать в строке браузера
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <br>
+  <h2>Olga Chernobrivets</h2>
+ </head>
+ <body>
+ <h3>Решение домашнего задания - "Основы PHP"</h3>
+ <?php
+error_reporting(E_ALL);
+ini_set ('display_errors', 1);
+
+$x = $_GET["num"];
+echo "Число ".$x;
+$a=1;
+$b=1;
+while ($a<$x)
+{
+	$c=$a;
+	$a+=$b;
+	$b=$c;
+}
+if ($x<$a)
+{
+	echo "</br>Число не входит в ряд Фиббоначи";
+}
+else
+{
+	echo "</br>Число входит в ряд Фиббоначи";
+}
+?>
+</body>
+</html>
