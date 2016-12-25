@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <br>
+  <h2>Домашняя работа по теме: Строки, массивы и объекты</h2>
+ </head>
+ <body>
+ <?php
+error_reporting(E_ALL);
+ini_set ('display_errors', 1);
+
+$multiarray = array(
+	'Africa' => array('Herpestes ichneumon', "Ophiophagus gunther", "Struthio camelus", "Elephantidae", "Giraffa camelopardalis"),
+	'Asia' => array ("Ailuropoda melanoleuca", "Alligator sinensis", "Macaca", "Phoenicopterus"),
+	'Australia' => array ("Phascolarctos cinereus", 'Macropus', "Arcophilus laniarius", "Ornithorhynchus anatinus")
+);
+$result = array();
+foreach ($multiarray as $continent => $array)
+{
+	foreach ($array as $key => $name) 
+	{
+		if(strpos($array[$key], ' '))
+			{
+				$result[] = $array[$key];
+			};
+	};
+};
+$string=implode(' ', $result);
+$newarray = explode(' ', $string);
+
+$forshuffle=array();
+$firstpart=array();
+foreach ($newarray as $key => $value)
+{
+	if ($key%2!==0)
+		{
+			$forshuffle[]=$newarray[$key];
+		}
+	else
+		{
+			$firstpart[]=$newarray[$key];
+		}
+}
+shuffle($forshuffle);
+$unrealanimals=array_combine($firstpart, $forshuffle);
+foreach ($unrealanimals as $key => $value)
+{
+	echo "<strong>$key $value</br></strong>";
+};
+?>
+</body>
+</html>
