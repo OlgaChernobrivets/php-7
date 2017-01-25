@@ -17,9 +17,10 @@ $files1 = scandir($dir);
 <body>
 <h2>Список файлов</h2>
 <?
-foreach ($files1 as $key => $value) { 
+foreach ($files1 as $key => $value) {
+	$id = substr($files1[$key], 0, strpos($files1[$key], '.'));
 	if (strlen($files1[$key]) > 3) {?>
-	<p><a href="<?=$dir.'/'.$files1[$key].'.json' ?>">Тест №<?=substr($files1[$key], 0, strpos($files1[$key], '.')) ?></a></p>
+	<p><a href="<?='test.php?id='.$id?>">Тест №<?= $id?></a></p>
 <?
 	}
 }

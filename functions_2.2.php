@@ -7,6 +7,11 @@ function isPOST ()
 	return !empty($_POST); 
 }
 
+function isGET ()
+{
+	return !empty($_GET); 
+}
+
 function count_files($dir){ 
  $count=0; // количество файлов. Считаем с нуля
  $directory=dir($dir); // 
@@ -55,7 +60,6 @@ function uploadFile($attribute)
 
 function open_test ($test_number)
 {
-	//var_dump($_POST); die;
 	$TestFile = __DIR__ .'/files/'.$test_number.'.json';
 	if (!file_exists($TestFile)) {
 		die ('Тест не найден!');
@@ -69,9 +73,21 @@ function open_test ($test_number)
 	
 }
 
-function chech_test ()
+function chech_test ($test_number, $_POST)
 {
-	var_dump($_POST); die;
+	$TestFile = __DIR__ .'/files/'.$test_number.'.json';
+	$dataFromFile =file_get_contents($TestFile);
+	$questoions = json_decode($dataFromFile, true);
+	if (!$questoions) {
+		$questoions = array();
+	}
+	$result = 0;
+	foreach ($questoions as $key => $value) {
+		if ($questoions[$key]['answer']== $_POST['Q'.$questoions[$key]['id']]) {
+			$result = ++$result;
+		 }
+	}
+	echo "Congratulate!<br><h4>You have $result correct answer(s) from 2!<h4></br>";
 }
 
 ?>
